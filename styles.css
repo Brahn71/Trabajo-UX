@@ -1,0 +1,289 @@
+/* --------------------- RESET Y ESTILOS BÁSICOS --------------------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background-color: #D9E1E8; /* Gris Claro */
+    min-height: 100vh;
+    font-family: 'Questrial', Arial, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  label, .subtitle {
+    font-family: 'Lato', sans-serif;
+  }
+  
+  button {
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #27374D;
+    font-weight: bold;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* --------------------- HEADER FIJO (Layout y Logo) --------------------- */
+  #main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #27374D; /* Azul Oscuro */
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+  }
+  
+  #main-header .header-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Se utiliza una imagen placeholder que simula el logo en negro y naranja.
+     Aunque la imagen fuente es de 300x300 px para cumplir con los requerimientos,
+     se redimensiona para adaptarse al header. */
+  #main-header img {
+    width: 60px;
+    height: auto;
+  }
+  
+  #main-header nav ul {
+    list-style: none;
+    display: flex;
+    margin-left: 20px;
+  }
+  
+  #main-header nav ul li {
+    margin-right: 15px;
+  }
+  
+  /* Íconos de navegación: se emplean Unicode para ejemplificar, con tamaño aproximado */
+  #main-header nav ul li a {
+    color: #FFFFFF;
+    font-size: 24px;
+  }
+  
+  /* --------------------- CONTENEDORES DE LOGIN/REGISTRO --------------------- */
+  .container {
+    background: #FFFFFF;
+    padding: 60px;
+    box-shadow: 0px 4px 10px rgba(39,55,77,0.2);
+    border-radius: 8px;
+    text-align: center;
+    width: 320px;
+    margin: 120px auto 20px; /* Se ajusta el margen superior para dejar espacio al header fijo */
+  }
+  
+  .container h2 {
+    margin-bottom: 10px;
+  }
+  
+  .container input {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .container button {
+    background: #27374D;
+    color: #FFFFFF;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+  }
+  
+  .container button:hover {
+    background: #1B2535;
+  }
+  
+  /* --------------------- SECCIÓN PRINCIPAL DE INVENTARIO --------------------- */
+  #inventory-container {
+    display: none;
+    padding: 20px;
+    margin-top: 60px; /* Espacio para el header fijo */
+  }
+  
+  /* Cabecera interna (opcional) */
+  #inventory-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  #user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  #user-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+  }
+  
+  /* Botones Agregar y Filtro */
+  #inventory-actions {
+    margin-bottom: 20px;
+  }
+  
+  #inventory-actions button {
+    margin-right: 10px;
+    padding: 10px 20px;
+    background: #27374D;
+    color: #FFFFFF;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+  }
+  
+  #inventory-actions button:hover {
+    background: #1B2535;
+  }
+  
+  /* --------------------- TABLA DE INVENTARIO --------------------- */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  table thead {
+    background-color: #27374D;
+    color: #FFFFFF;
+  }
+  
+  table th, table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  table tbody tr:hover {
+    background-color: #f4f4f4;
+  }
+  
+  .btn-gestionar {
+    background: #526D82; /* Azul Medio */
+    color: #FFFFFF;
+    padding: 6px 12px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    border: none;
+  }
+  
+  .btn-gestionar:hover {
+    background: #42576b;
+  }
+  
+  /* --------------------- MODALES (Pop-ups con bordes en Azul Oscuro Extra) --------------------- */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    background-color: #FFFFFF;
+    margin: 5% auto;
+    padding: 20px;
+    border: 2px solid #1B2535;
+    width: 400px;
+    border-radius: 8px;
+    position: relative;
+  }
+  
+  .modal-content h2 {
+    margin-bottom: 15px;
+  }
+  
+  .modal-content label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .modal-content input[type="text"],
+  .modal-content input[type="date"],
+  .modal-content select,
+  .modal-content textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .modal-content textarea {
+    resize: vertical;
+  }
+  
+  .modal-content button {
+    margin-right: 5px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    font-family: inherit;
+    color: #FFFFFF;
+    border: none;
+  }
+  
+  .modal-content button.save {
+    background-color: #27374D;
+  }
+  
+  .modal-content button.edit {
+    background-color: #526D82;
+  }
+  
+  .modal-content button.delete {
+    background-color: #27374D;
+  }
+  
+  .modal-content button.cancel {
+    background-color: #526D82;
+  }
+  
+  .modal-content button:hover {
+    opacity: 0.9;
+  }
+  button.edit {
+    /* Tus estilos actuales */
+    display: inline-flex;       /* Para que texto e ícono estén en línea */
+    align-items: center;        /* Centra verticalmente el contenido */
+    justify-content: center;    /* Ajusta según dónde quieras el texto+icono horizontalmente */
+  }
+  
+  button.edit i.material-icons {
+    margin-left: 8px;           /* Separación entre texto e ícono */
+    font-size: 20px;            /* Ajusta el tamaño del ícono a tu gusto */
+    vertical-align: middle;     /* Asegura la alineación vertical */
+  }
+   

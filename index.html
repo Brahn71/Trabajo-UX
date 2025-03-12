@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Login y Gestión</title>
+  <!-- Importar Google Fonts: Poppins para títulos, Questrial para párrafos y Lato para subtítulos -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Questrial&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- HEADER FIJO CON LOGO E ICONOGRAFÍA -->
+  <header id="main-header">
+    <div class="header-content">
+      <img src="imag/WhatsApp Image 2025-02-21 at 9.27.29 PM.jpeg" alt="Logo">
+      <nav>
+        <ul>
+          <li><a href="Proyecto.html" title="Inicio">⌂</a></li>
+          <li><a href="#" title="Ajustes">☼</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <i class="material-icons">add</i>
+
+  <!-- CONTENEDOR DE LOGIN -->
+  <div class="container" id="login-container">
+    <h2>Login</h2>
+    <p>Inicia sesión para continuar</p>
+    <input type="email" id="login-email" placeholder="Correo">
+    <input type="password" id="login-password" placeholder="Contraseña">
+    <button onclick="login()">Login</button>
+    <p>¿No tienes cuenta? <a href="#" onclick="showRegister()">Regístrate</a></p>
+  </div>
+
+  <!-- CONTENEDOR DE REGISTRO -->
+  <div class="container" id="register-container" style="display: none;">
+    <h2>Registrar</h2>
+    <p>¿Ya estás registrado? <a href="#" onclick="showLogin()">Acceso</a></p>
+    <input type="text" id="register-name" placeholder="Nombre">
+    <input type="email" id="register-email" placeholder="Correo">
+    <input type="password" id="register-password" placeholder="Contraseña">
+    <input type="password" id="confirm-password" placeholder="Confirmar contraseña">
+    <button onclick="register()">Sign Up</button>
+  </div>
+
+  <!-- CONTENEDOR PRINCIPAL DE INVENTARIO -->
+  <div id="inventory-container">
+    <div id="inventory-header">
+      <div id="user-info">
+        <img src="https://img.freepik.com/vector-gratis/circulo-azul-usuario-blanco_78370-4707.jpg" alt="User Avatar" id="user-avatar">
+        <span id="user-name" style="font-weight: bold;"></span>
+      </div>
+    </div>
+    <center>
+      <div id="inventory-actions">
+        <button onclick="showAddModal()">Agregar</button>
+        <button onclick="showFilterModal()">Filtro</button>
+      </div>
+    </center>
+    <table id="inventory-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Estado</th>
+          <th>Descripción</th>
+          <th>Tipo</th>
+          <th>Modelo</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Se llena dinámicamente con JS -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- MODAL: AGREGAR -->
+  <div id="add-modal" class="modal">
+    <div class="modal-content">
+      <h2>Agregar</h2>
+      <label for="add-nombre">Nombre</label>
+      <input type="text" id="add-nombre">
+
+      <label for="add-estado">Estado</label>
+      <select id="add-estado">
+        <option value="Nuevo">Nuevo</option>
+        <option value="Usado">Usado</option>
+        <option value="Dañado">Dañado</option>
+      </select>
+
+      <label for="add-fecha">Fecha entrada</label>
+      <input type="date" id="add-fecha">
+
+      <label for="add-localizacion">Localización</label>
+      <input type="text" id="add-localizacion">
+
+      <label for="add-tipo">Tipo</label>
+      <input type="text" id="add-tipo">
+
+      <label for="add-modelo">Modelo</label>
+      <input type="text" id="add-modelo">
+
+      <label for="add-descripcion">Descripción Producto</label>
+      <textarea id="add-descripcion"></textarea>
+
+      <button class="save" onclick="saveItem()">Guardar</button>
+      <button class="cancel" onclick="closeAddModal()">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- MODAL: GESTIONAR -->
+  <div id="manage-modal" class="modal">
+    <div class="modal-content">
+      <h2>Gestionar</h2>
+      <label for="manage-nombre">Nombre</label>
+      <input type="text" id="manage-nombre">
+
+      <label for="manage-tipo">Tipo</label>
+      <input type="text" id="manage-tipo">
+
+      <label for="manage-estante">Estante</label>
+      <input type="text" id="manage-estante">
+
+      <label for="manage-estado">Estado</label>
+      <select id="manage-estado">
+        <option value="Nuevo">Nuevo</option>
+        <option value="Usado">Usado</option>
+        <option value="Dañado">Dañado</option>
+      </select>
+
+      <label for="manage-descripcion">Descripción</label>
+      <textarea id="manage-descripcion"></textarea>
+
+      <label for="manage-localizacion">Localización</label>
+      <input type="text" id="manage-localizacion">
+
+      <label for="manage-prestar">Prestar a</label>
+      <input type="text" id="manage-prestar">
+
+      <label for="manage-carta">Carta Resguardo</label>
+      <input type="text" id="manage-carta">
+
+      <label for="manage-fecha">Fecha entrada</label>
+      <input type="date" id="manage-fecha">
+
+      <button class="edit" onclick="editItem()">
+        Editar
+        <i class="material-icons">edit</i>
+      </button>
+      <button class="edit" onclick="deleteItem()">
+        Eliminar
+        <i class="material-icons">delete_forever</i>
+      </button>
+      <button class="edit" onclick="closeManageModal()">
+        Cancelar
+        <i class="material-icons">cancel</i>
+      </button>
+      <BR></BR>
+      <button class="edit" onclick="saveManageChanges()">
+        Guardar
+        <i class="material-icons">sim_card</i>
+      </button>
+      
+    </div>
+  </div>
+
+  <!-- MODAL: FILTRO -->
+  <div id="filter-modal" class="modal">
+    <div class="modal-content">
+      <h2>Filtrar</h2>
+      <label for="filter-nombre">Nombre</label>
+      <input type="text" id="filter-nombre">
+      <button class="save" onclick="applyFilter()">Aplicar Filtro</button>
+      <button class="cancel" onclick="closeFilterModal()">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- SCRIPT PRINCIPAL -->
+  <script src="script.js"></script>
+</body>
+</html>
