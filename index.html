@@ -54,8 +54,15 @@
     </div>
     <center>
       <div id="inventory-actions">
-        <button onclick="showAddModal()">Agregar</button>
-        <button onclick="showFilterModal()">Filtro</button>
+        <button class="edit" onclick="showAddModal()">
+          Agregar
+          <i class="material-icons">add</i>
+        </button>
+
+        <button class="edit" onclick="showFilterModal()">
+          Filtro
+          <i class="material-icons">find_replace</i>
+        </button>
       </div>
     </center>
     <table id="inventory-table">
@@ -66,9 +73,11 @@
           <th>Descripción</th>
           <th>Tipo</th>
           <th>Modelo</th>
-          <th></th>
+          <th>Carta Resguardo</th>
+          <th>Acciones</th>
         </tr>
       </thead>
+      
       <tbody>
         <!-- Se llena dinámicamente con JS -->
       </tbody>
@@ -138,8 +147,11 @@
       <label for="manage-prestar">Prestar a</label>
       <input type="text" id="manage-prestar">
 
-      <label for="manage-carta">Carta Resguardo</label>
-      <input type="text" id="manage-carta">
+      <!-- Nuevo botón "Subir Resguardo" con ícono -->
+    <label for="manage-carta" class="file-upload-label">
+      <i class="material-icons">upload_file</i> Subir Resguardo
+    </label>
+    <input type="file" id="manage-carta" accept=".pdf,.doc,.docx" style="display: none;" />
 
       <label for="manage-fecha">Fecha entrada</label>
       <input type="date" id="manage-fecha">

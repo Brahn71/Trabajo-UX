@@ -286,4 +286,28 @@
     font-size: 20px;            /* Ajusta el tamaño del ícono a tu gusto */
     vertical-align: middle;     /* Asegura la alineación vertical */
   }
-   
+   /* Botón para subir archivos */
+.file-upload-label {
+  display: inline-flex;       /* Para colocar ícono y texto en línea */
+  align-items: center;        /* Centra verticalmente el contenido */
+  cursor: pointer;            /* Cursor de mano al pasar */
+  background-color: #526D82;  /* Azul medio (o el color que prefieras) */
+  color: #FFFFFF;
+  padding: 10px 16px;
+  border-radius: 5px;
+  margin-bottom: 10px;        /* Espacio debajo del botón */
+  transition: background 0.3s ease;
+  font-family: inherit;       /* Usa la misma fuente del resto */
+  font-size: 14px;
+  width: fit-content;         /* Se ajusta al contenido */
+}
+
+.file-upload-label:hover {
+  background-color: #42576b;  /* Oscurece un poco al hover */
+}
+
+.file-upload-label i.material-icons {
+  margin-right: 6px;          /* Separación entre ícono y texto */
+  font-size: 18px;
+  vertical-align: middle;
+}

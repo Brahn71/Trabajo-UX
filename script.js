@@ -67,6 +67,7 @@ function login() {
 
 /****************** FUNCIONES PARA EL INVENTARIO ******************/
 
+// Actualiza la tabla con los ítems (o los ítems filtrados)
 function refreshTable(filteredItems = null) {
   let tbody = document.querySelector('#inventory-table tbody');
   tbody.innerHTML = '';
@@ -76,21 +77,32 @@ function refreshTable(filteredItems = null) {
   dataToRender.forEach((item, index) => {
     let row = document.createElement('tr');
 
+    // Columna Nombre
     let tdNombre = document.createElement('td');
     tdNombre.textContent = item.nombre;
 
+    // Columna Estado
     let tdEstado = document.createElement('td');
     tdEstado.textContent = item.estado;
 
+    // Columna Descripción
     let tdDesc = document.createElement('td');
     tdDesc.textContent = item.descripcion;
 
+    // Columna Tipo
     let tdTipo = document.createElement('td');
     tdTipo.textContent = item.tipo;
 
+    // Columna Modelo
     let tdModelo = document.createElement('td');
     tdModelo.textContent = item.modelo;
 
+    // Nueva columna: Carta Resguardo
+    let tdCarta = document.createElement('td');
+    // Si existe una carta (archivo subido) se muestra su nombre; de lo contrario, se muestra "No"
+    tdCarta.textContent = item.cartaResguardo && item.cartaResguardo.trim() !== "" ? item.cartaResguardo : "No";
+
+    // Columna de Gestión (botón para gestionar el ítem)
     let tdGestionar = document.createElement('td');
     let btnGestionar = document.createElement('button');
     btnGestionar.textContent = 'Gestionar';
@@ -98,17 +110,20 @@ function refreshTable(filteredItems = null) {
     btnGestionar.onclick = () => showManageModal(index);
     tdGestionar.appendChild(btnGestionar);
 
+    // Agregar todas las celdas a la fila
     row.appendChild(tdNombre);
     row.appendChild(tdEstado);
     row.appendChild(tdDesc);
     row.appendChild(tdTipo);
     row.appendChild(tdModelo);
+    row.appendChild(tdCarta);
     row.appendChild(tdGestionar);
 
     tbody.appendChild(row);
   });
 }
 
+/* ---------- FUNCIONES PARA EL MODAL DE AGREGAR ÍTEM ---------- */
 function showAddModal() {
   document.getElementById('add-modal').style.display = 'block';
 }
@@ -143,13 +158,14 @@ function saveItem() {
     descripcion,
     estante: '',
     prestarA: '',
-    cartaResguardo: ''
+    cartaResguardo: ''  // Inicialmente no tiene carta
   });
 
   refreshTable();
   closeAddModal();
 }
 
+/* ---------- FUNCIONES PARA EL MODAL DE GESTIONAR ÍTEM ---------- */
 function showManageModal(index) {
   currentItemIndex = index;
   let item = items[index];
@@ -161,7 +177,7 @@ function showManageModal(index) {
   document.getElementById('manage-descripcion').value = item.descripcion;
   document.getElementById('manage-localizacion').value = item.localizacion;
   document.getElementById('manage-prestar').value = item.prestarA || '';
-  document.getElementById('manage-carta').value = item.cartaResguardo || '';
+  // Por seguridad, no se asigna valor al input file
   document.getElementById('manage-fecha').value = item.fechaEntrada || '';
 
   document.getElementById('manage-modal').style.display = 'block';
@@ -185,7 +201,17 @@ function saveManageChanges() {
   item.descripcion = document.getElementById('manage-descripcion').value;
   item.localizacion = document.getElementById('manage-localizacion').value;
   item.prestarA = document.getElementById('manage-prestar').value;
-  item.cartaResguardo = document.getElementById('manage-carta').value;
+
+  // Procesar el archivo de "Carta Resguardo"
+  const fileInput = document.getElementById('manage-carta');
+  if (fileInput.files.length > 0) {
+    // Aquí se guarda el nombre del archivo; para subir el archivo se requiere backend
+    item.cartaResguardo = fileInput.files[0].name;
+  } else {
+    // Si no se seleccionó archivo, se mantiene o se borra la carta (según la lógica deseada)
+    item.cartaResguardo = "";
+  }
+
   item.fechaEntrada = document.getElementById('manage-fecha').value;
 
   refreshTable();
@@ -201,6 +227,7 @@ function deleteItem() {
   }
 }
 
+/* ---------- FUNCIONES PARA EL FILTRO ---------- */
 function showFilterModal() {
   document.getElementById('filter-modal').style.display = 'block';
 }
