@@ -104,8 +104,13 @@
       <label for="add-localizacion">Localización</label>
       <input type="text" id="add-localizacion">
 
-      <label for="add-tipo">Tipo</label>
-      <input type="text" id="add-tipo">
+      <label for="add-tipo">Categoría</label>
+      <select id="add-tipo">
+        <option value="Herramienta">Herramienta</option>
+        <option value="Vehículo">Vehículo</option>
+        <option value="Equipo Personal">Equipo Personal</option>
+        <option value="Otro">Otro</option>
+      </select>
 
       <label for="add-modelo">Modelo</label>
       <input type="text" id="add-modelo">
@@ -123,38 +128,44 @@
     <div class="modal-content">
       <h2>Gestionar</h2>
       <label for="manage-nombre">Nombre</label>
-      <input type="text" id="manage-nombre">
+      <input type="text" id="manage-nombre" disabled>
 
-      <label for="manage-tipo">Tipo</label>
-      <input type="text" id="manage-tipo">
+      <label for="manage-tipo">Categoría</label>
+      <select id="manage-tipo" disabled>
+        <option value="Herramienta">Herramienta</option>
+        <option value="Vehículo">Vehículo</option>
+        <option value="Equipo Personal">Equipo Personal</option>
+        <option value="Otro">Otro</option>
+      </select>
 
       <label for="manage-estante">Estante</label>
-      <input type="text" id="manage-estante">
+      <input type="text" id="manage-estante" disabled>
 
       <label for="manage-estado">Estado</label>
-      <select id="manage-estado">
+      <select id="manage-estado" disabled>
         <option value="Nuevo">Nuevo</option>
         <option value="Usado">Usado</option>
         <option value="Dañado">Dañado</option>
       </select>
 
       <label for="manage-descripcion">Descripción</label>
-      <textarea id="manage-descripcion"></textarea>
+      <textarea id="manage-descripcion" disabled></textarea>
 
       <label for="manage-localizacion">Localización</label>
-      <input type="text" id="manage-localizacion">
+      <input type="text" id="manage-localizacion" disabled>
 
       <label for="manage-prestar">Prestar a</label>
-      <input type="text" id="manage-prestar">
+      <button class="edit" onclick="showPrestarModal()">Seleccionar Usuario</button>
+      <input type="text" id="manage-prestar" disabled>
 
       <!-- Nuevo botón "Subir Resguardo" con ícono -->
-    <label for="manage-carta" class="file-upload-label">
-      <i class="material-icons">upload_file</i> Subir Resguardo
-    </label>
-    <input type="file" id="manage-carta" accept=".pdf,.doc,.docx" style="display: none;" />
+      <label for="manage-carta" class="file-upload-label">
+        <i class="material-icons">upload_file</i> Subir Resguardo
+      </label>
+      <input type="file" id="manage-carta" accept=".pdf,.doc,.docx" style="display: none;">
 
       <label for="manage-fecha">Fecha entrada</label>
-      <input type="date" id="manage-fecha">
+      <input type="date" id="manage-fecha" disabled>
 
       <button class="edit" onclick="editItem()">
         Editar
@@ -173,7 +184,19 @@
         Guardar
         <i class="material-icons">sim_card</i>
       </button>
-      
+    </div>
+  </div>
+
+  <!-- MODAL: SELECCIONAR USUARIO -->
+  <div id="prestar-modal" class="modal">
+    <div class="modal-content">
+      <h2>Seleccionar Usuario</h2>
+      <label for="prestar-usuario">Usuario</label>
+      <select id="prestar-usuario">
+        <!-- Se llena dinámicamente con JS -->
+      </select>
+      <button class="save" onclick="selectPrestarUsuario()">Seleccionar</button>
+      <button class="cancel" onclick="closePrestarModal()">Cancelar</button>
     </div>
   </div>
 
