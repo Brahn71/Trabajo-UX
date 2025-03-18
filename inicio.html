@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>WorkSafe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Questrial&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background: url('https://mecaluxmx.cdnwm.com/documents/20128/538523/M38P10+almacen-productos-terminados.jpg/92a94be0-ec68-9172-3e99-e3a13c65aeed?t=1644968934000&e=jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .overlay {
+      background-color: rgba(39, 55, 77, 0.7); /* Azul oscuro con transparencia */
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: #FFFFFF;
+      text-align: center;
+      padding: 20px;
+    }
+    .overlay h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+    .overlay p {
+      font-family: 'Questrial', sans-serif;
+      font-size: 1.5em;
+      margin-bottom: 40px;
+    }
+    .overlay button {
+      background-color: #27374D;
+      color: #FFFFFF;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .overlay button:hover {
+      background-color: #1B2535;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h1>WorkSafe</h1>
+    <p>Gestión, seguridad, confianza</p>
+    <button onclick="window.location.href='index.html'">Comenzar</button>
+  </div>
+</body>
+</html>

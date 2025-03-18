@@ -302,3 +302,7 @@ function selectPrestarUsuario() {
   document.getElementById('manage-prestar').value = selectedUser;
   closePrestarModal();
 }
+
+function toggleTheme() {
+  document.body.classList.toggle('dark-mode');
+}
