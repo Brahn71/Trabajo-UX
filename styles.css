@@ -311,3 +311,63 @@
   font-size: 18px;
   vertical-align: middle;
 }
+
+/* --------------------- ESTILOS PARA EL TEMA NOCTURNO --------------------- */
+body.dark-mode {
+  background-color: #1B2535; /* Azul Oscuro */
+  color: #FFFFFF;
+}
+
+.dark-mode header {
+  background-color: #0F172A; /* Azul más oscuro */
+}
+
+.dark-mode .container {
+  background: #27374D;
+  color: #FFFFFF;
+}
+
+.dark-mode .container input {
+  background: #1B2535;
+  color: #FFFFFF;
+  border: 1px solid #526D82;
+}
+
+.dark-mode .container button {
+  background: #526D82;
+  color: #FFFFFF;
+}
+
+.dark-mode .container button:hover {
+  background: #42576b;
+}
+
+.dark-mode table thead {
+  background-color: #526D82;
+}
+
+.dark-mode table tbody tr:hover {
+  background-color: #27374D;
+}
+
+.dark-mode .modal-content {
+  background-color: #27374D;
+  color: #FFFFFF;
+  border: 2px solid #1B2535;
+}
+
+.dark-mode .modal-content input,
+.dark-mode .modal-content select,
+.dark-mode .modal-content textarea {
+  background: #1B2535;
+  color: #FFFFFF;
+  border: 1px solid #526D82;
+}
+
+.dark-mode .modal-content button {
+  background-color: #526D82;
+}
+
+.dark-mode .modal-content button:hover {
+  background-color: #42576b;
+}

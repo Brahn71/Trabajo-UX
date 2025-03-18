@@ -6,6 +6,15 @@ let currentUser = null;   // Usuario logueado
 let items = [];           // Array donde guardaremos los ítems
 let currentItemIndex = -1; // Índice del ítem en edición
 
+/****************** DATOS DE TRABAJADORES ******************/
+let trabajadores = [
+  { id: 1, nombre: 'Juan Pérez' },
+  { id: 2, nombre: 'María López' },
+  { id: 3, nombre: 'Carlos García' },
+  { id: 4, nombre: 'Ana Martínez' },
+  { id: 5, nombre: 'Luis Rodríguez' }
+];
+
 /* ---------- MOSTRAR/OCULTAR SECCIONES DE LOGIN/REGISTRO ---------- */
 function showRegister() {
   document.getElementById('login-container').style.display = 'none';
@@ -177,8 +186,18 @@ function showManageModal(index) {
   document.getElementById('manage-descripcion').value = item.descripcion;
   document.getElementById('manage-localizacion').value = item.localizacion;
   document.getElementById('manage-prestar').value = item.prestarA || '';
-  // Por seguridad, no se asigna valor al input file
   document.getElementById('manage-fecha').value = item.fechaEntrada || '';
+
+  // Bloquear los campos por defecto
+  document.getElementById('manage-nombre').disabled = true;
+  document.getElementById('manage-tipo').disabled = true;
+  document.getElementById('manage-estante').disabled = true;
+  document.getElementById('manage-estado').disabled = true;
+  document.getElementById('manage-descripcion').disabled = true;
+  document.getElementById('manage-localizacion').disabled = true;
+  document.getElementById('manage-prestar').disabled = true;
+  document.getElementById('manage-carta').disabled = true;
+  document.getElementById('manage-fecha').disabled = true;
 
   document.getElementById('manage-modal').style.display = 'block';
 }
@@ -188,7 +207,16 @@ function closeManageModal() {
 }
 
 function editItem() {
-  alert("Puedes editar los campos y luego presionar 'Guardar' para confirmar.");
+  // Desbloquear los campos para edición
+  document.getElementById('manage-nombre').disabled = false;
+  document.getElementById('manage-tipo').disabled = false;
+  document.getElementById('manage-estante').disabled = false;
+  document.getElementById('manage-estado').disabled = false;
+  document.getElementById('manage-descripcion').disabled = false;
+  document.getElementById('manage-localizacion').disabled = false;
+  document.getElementById('manage-prestar').disabled = false;
+  document.getElementById('manage-carta').disabled = false;
+  document.getElementById('manage-fecha').disabled = false;
 }
 
 function saveManageChanges() {
@@ -249,4 +277,32 @@ function applyFilter() {
   );
   refreshTable(filtered);
   closeFilterModal();
+}
+
+/* ---------- FUNCIONES PARA EL MODAL DE PRESTAR ÍTEM ---------- */
+function showPrestarModal() {
+  let select = document.getElementById('prestar-usuario');
+  select.innerHTML = '';
+  trabajadores.forEach(trabajador => {
+    let option = document.createElement('option');
+    option.value = trabajador.nombre;
+    option.textContent = trabajador.nombre;
+    select.appendChild(option);
+  });
+  document.getElementById('prestar-modal').style.display = 'block';
+}
+
+function closePrestarModal() {
+  document.getElementById('prestar-modal').style.display = 'none';
+}
+
+function selectPrestarUsuario() {
+  let select = document.getElementById('prestar-usuario');
+  let selectedUser = select.value;
+  document.getElementById('manage-prestar').value = selectedUser;
+  closePrestarModal();
+}
+
+function toggleTheme() {
+  document.body.classList.toggle('dark-mode');
 }
